@@ -15,6 +15,7 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin([
           {from: './node_modules/bootswatch/flatly/bootstrap.min.css'},
+          {from: './issues.json'},
           {from: './index_build.html', to: 'index.html'}
         ])
       ],
