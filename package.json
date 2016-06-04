@@ -1,0 +1,26 @@
+{
+  "name": "ossp",
+  "version": "0.0.1",
+  "description": "Proposal display system for OSS using React",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JikkuJose/oss-proposals.git"
+  },
+  "keywords": [
+    "react",
+    "Open",
+    "source",
+    "redpanthers",
+    "qucentis",
+    "lightrains"
+  ],
+  "author": "Jikku Jose",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JikkuJose/oss-proposals/issues"
+  },
+  "homepage": "https://github.com/JikkuJose/oss-proposals#readme"
+}
