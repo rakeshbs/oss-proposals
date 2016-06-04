@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/JikkuJose/oss-proposals#readme",
   "dependencies": {
+    "bootstrap": "^3.3.6",
+    "bootswatch": "^3.3.6",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   },
