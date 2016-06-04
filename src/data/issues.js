@@ -20,7 +20,6 @@ export default class Issues {
       item.number = words[4];
       item.id = index;
 
-      console.log(item)
       return item;
     });
 

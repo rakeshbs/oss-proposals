@@ -1,10 +1,26 @@
 import React from 'react';
+import jQuery from 'jquery'
 import Issues from '../data/issues.js'
 
 export default class Table extends React.Component {
   issues() {
     let i = new Issues;
     return i.enumerate();
+  }
+
+  constructor() {
+    super()
+    this.state = {issues: this.issues()}
+  }
+
+  populateFromJSON() {
+    return(
+      [{link: '', id: 2, number: 3, owner: 'Hulk Hogan', project: 'Scandal'}]
+    );
+  }
+
+  componentDidMount() {
+    this.state = {issues: this.populateFromJSON()}
   }
 
   render() {
@@ -20,7 +36,7 @@ export default class Table extends React.Component {
         </thead>
         <tbody>
           {
-            this.issues().map(function(issue, index) {
+            this.state.issues.map(function(issue, index) {
               return(
               <tr key={issue.id}>
                 <td>{index + 1}</td>

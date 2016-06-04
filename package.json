@@ -25,6 +25,8 @@
   "dependencies": {
     "bootstrap": "^3.3.6",
     "bootswatch": "^3.3.6",
+    "jquery": "^2.2.4",
+    "json-loader": "^0.5.4",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   },
