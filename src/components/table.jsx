@@ -1,54 +1,79 @@
 import React from 'react';
 import jQuery from 'jquery'
-import Issues from '../data/issues.js'
 
 export default class Table extends React.Component {
-  issues() {
-    let i = new Issues;
-    return i.enumerate();
-  }
 
   constructor() {
     super()
-    this.state = {issues: this.issues()}
+    this.state = {
+      settlements: [],
+      settlementKey: 1,
+    }
   }
 
-  populateFromJSON() {
-    return(
-      [{link: '', id: 2, number: 3, owner: 'Hulk Hogan', project: 'Scandal'}]
-    );
+  randomString(length) {
+    let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return "0x"+result;
+  }
+
+  addRandomSettlement() {
+    let transaction_hash = this.randomString(10) + "..."
+    let from = this.randomString(10) + "..."
+    let to = this.randomString(10) + "..."
+    let amount = Math.floor(Math.random() * 1000)
+
+   this.state.settlements.unshift ( {
+       id: this.state.settlementKey,
+       transaction_hash: transaction_hash,
+       from: from,
+       to: to,
+       amount: amount,
+   });
+   if (this.state.settlements.length > 10) {
+     this.state.settlements.pop()
+   }
+   this.state.settlementKey = this.state.settlementKey + 1
+   this.setState(this.state);
+   console.log(this.state.settlements);
   }
 
   componentDidMount() {
-    this.state = {issues: this.populateFromJSON()}
+
+    setInterval( () => {
+      this.addRandomSettlement()
+    },2000);
   }
 
   render() {
     return(
       <table className="table table-striped table-hover ">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Project Name</th>
-            <th>Issue Number</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            this.state.issues.map(function(issue, index) {
-              return(
-              <tr key={issue.id}>
-                <td>{index + 1}</td>
-                <td>{issue.owner + " / " + issue.project}</td>
-                <td>{issue.number}</td>
-                <td><a href={issue.link} target='_blank'>Link</a></td>
-              </tr>
-              )
-              })
-          }
-        </tbody>
+      <thead>
+      <tr>
+      <th>#</th>
+      <th>Transaction Hash</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Amount</th>
+      </tr>
+      </thead>
+      <tbody>
+      {
+        this.state.settlements.slice(0,10).map(function(settlement, index) {
+          return(
+            <tr key={settlement.id}>
+            <td>{settlement.id}</td>
+            <td>{settlement.transaction_hash }</td>
+            <td>{settlement.from}</td>
+            <td>{settlement.to}</td>
+            <td>{settlement.amount}</td>
+            </tr>
+          )
+        })
+      }
+      </tbody>
       </table>
     );
   }
-}
+  }
